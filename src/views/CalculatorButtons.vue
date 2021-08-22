@@ -6,7 +6,7 @@
       <router-link to='/' class="back-buttom">GO BACK</router-link>
       </div>
         <div class="calculator">
-          <div class="display">{{current || '0'}}</div>
+          <div class="display">{{current || '0'}} </div>
           <button @click="clear" class="allclear-button bottons">AC</button>
           <button @click="del" class="delete-button bottons">DEL</button>
           <button @click="doOperator('/')" class="operators-button bottons">/</button>
@@ -71,9 +71,13 @@ export default {
     },
     doOperator(newOperator){
       const numberValue = parseFloat(this.current);
+      if(!this.current) {
+        return
+      }
       if(this.operator && this.operatorClicked) {
         this.operator = newOperator
-      }
+        return
+      }                                                
       if (this.previous == null) {
         this.previous = numberValue
       }else if (this.operator) {
